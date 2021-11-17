@@ -169,7 +169,7 @@ class Balju_view() : Activity() {
                 if(str!!.length >2){
 
                     var str2 = str!!.substring(0, str.length-1)
-                    val sql = "select * from product3 where  bcode like $str2"
+                    val sql = "select * from product3 where  bcode like '$str2'"
                     val c: Cursor = database.rawQuery(sql,null)
 
                     //  Log.d("로그5",c.getString(c.getColumnIndex("pname")))
@@ -358,7 +358,11 @@ class Balju_view() : Activity() {
             tableLayout.addView(tableRow)
             Log.d("로그4",c.getString(c.getColumnIndex("pname")))
             buffer.write(list.get(0).toString())
-            buffer.write("    ")
+            val strsql = list.get(0).toString()
+            val str2 = 13 - strsql.length
+            for(i in 0..str2){
+                buffer.write(" ")
+            }
             buffer.write(list.get(2).toString())
             buffer.newLine()
 
